@@ -1,2 +1,27 @@
-# Jay-Skill-Package
-This repository stores the AI Agent Skills which create by myself and is useful and workable in my CS learning 
+# Jay Skill Package
+
+一个用于沉淀、验证和复用个人 AI Agent Skills 的仓库。每个 Skill 都应有明确的触发条件、可验证的工作流和适用边界，而不是一次性提示词。
+
+## 分类
+
+| 分类 | 用途 |
+| --- | --- |
+| [学习流程优化类](./学习流程优化类/) | 学习阶段、复盘、评测、证据与学习系统设计。 |
+| [项目流程优化类](./项目流程优化类/) | 项目规划、实现、测试、发布和维护流程。 |
+| [学习技巧类](./学习技巧类/) | 检索练习、解释、记忆和解题等认知策略。 |
+| [工作实用类](./工作实用类/) | 文档、沟通、分析和自动化等通用工作流。 |
+| [skill设计思考](./skill设计思考/) | 对 Skill 触发、边界、评测与迭代的思考记录。 |
+
+## 当前 Skills
+
+| Skill | 分类 | 作用 |
+| --- | --- | --- |
+| [`designing-engineering-learning-phases`](./学习流程优化类/designing-engineering-learning-phases/) | 学习流程优化类 | 从知识类型、掌握深度、依赖和全局重要性设计工程学习阶段。 |
+
+## 新增 Skill 的最低标准
+
+- 使用小写连字符目录名，并包含 `SKILL.md`。
+- 在 frontmatter 中清楚说明何时触发，不在描述中浓缩全部流程。
+- 先记录无 Skill 时的失败模式，再用真实场景验证 Skill 是否改善行为。
+- 仅在必要时增加 `agents/`、`references/`、`scripts/` 或 `assets/`。
+- 将可复用的思考与验证记录到对应分类或 `skill设计思考/`。
