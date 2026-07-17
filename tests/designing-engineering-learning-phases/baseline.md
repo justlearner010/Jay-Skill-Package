@@ -32,3 +32,12 @@ structural validation gate. Its only layout instruction was to reuse repository
 organization, so it could not resolve the conflicting `lab/`, `labs/`, and
 `weeks/` locations. This is a RED result for Scenario 4 and criterion 7 of the
 expanded rubric.
+
+## Cross-phase artifact baseline
+
+With the pre-contract Skill loaded, the Week 0/Week 1 drift scenario failed
+four of five invariants: it did not produce a compatibility matrix, classify
+predecessor patterns, define one canonical artifact contract with migration
+work, or verify headings, names, granularity, commands, links, and evidence
+fields. It only preserved the separation between a knowledge graph and a
+format concern. This is a RED result for Scenario 5 and criterion 8.

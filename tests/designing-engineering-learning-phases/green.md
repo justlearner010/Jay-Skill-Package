@@ -33,3 +33,15 @@ the legacy `resources/week-00.md` layout.
 The expanded rubric now passes 8/8: the original seven criteria plus structural
 compatibility. Future changes must preserve the original scenario behavior and
 the explicit-constraint-over-legacy rule.
+
+## Cross-phase artifact validation
+
+Scenario 5 was rerun after adding the cross-phase artifact contract. The run
+produced a compatibility matrix covering paths, granularity, names, headings,
+links/commands, and evidence fields; classified Week 0 as legacy and Week 1 as
+partially canonical but incomplete; selected one contract before the next
+phase; and required migration plus conformance checks before publishing it.
+
+All five Scenario 5 invariants passed. The expanded rubric now passes 9/9;
+future phase design must preserve both explicit-layout precedence and
+cross-phase artifact conformance.

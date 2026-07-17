@@ -94,6 +94,35 @@ If a new role is genuinely necessary, document why the old roles cannot own it;
 do not create a second spelling of an established directory merely for a single
 phase.
 
+## Cross-phase artifact contract
+
+Path compatibility alone is insufficient. Before designing a new phase, compare
+at least one predecessor and the repository's written course contract with this
+matrix:
+
+| Contract field | Record and decide |
+| --- | --- |
+| role and path | navigation, resource, task chain, Lab, evidence, solution; canonical location |
+| granularity | one combined file, one file per role, or another explicit grouping |
+| name | week identifier, stable file names, and public entry-point names |
+| required sections | role headings or fields that make artifacts comparable across phases |
+| links and commands | relative-link convention, test command, grader command, and consumer entry point |
+| evidence record | required fields for explanation, failure, transfer, and completion evidence |
+
+Classify every observed pattern as `canonical`, `legacy`, `incomplete`, or
+`justified variation`. An earlier week is not automatically canonical. An
+explicit user requirement and written repository contract outrank a legacy
+predecessor. Content depth may vary by knowledge importance; artifact format may
+vary only when the variation is named, justified, and verified.
+
+Before creating a new phase, emit one canonical artifact contract and either:
+
+1. migrate divergent predecessor artifacts in dependency order; or
+2. retain a variation with its reason, affected consumers, and verification.
+
+Verification must cover existence and links plus contract conformance: required
+names, file count/granularity, headings/fields, commands, and evidence roles.
+
 ## Required phase output
 
 ```text
@@ -103,8 +132,9 @@ knowledge map: type, depth, dependency, importance, task layer, rationale
 dependency graph
 scope and non-goals
 structural compatibility map: role, path, predecessor pattern, migration impact
+cross-phase conformance report: matrix, classification, contract, migration or exception
 knowledge-gated tasks
-verification matched to knowledge type, plus links, paths, and entry points
+verification matched to knowledge type, plus links, paths, entry points, and format conformance
 completion gates and unresolved P0 rule
 next unlocked capability
 ```

@@ -13,8 +13,10 @@ Every response must make these decisions explicitly and in this order:
 5. Calibrate evidence intensity unequally from importance, dependency role, learner gap, and failure risk.
 6. Derive a structural compatibility map from the target repository's established
    layout before assigning artifact paths.
-7. Emit a coherent learning phase with outcomes, ordered work, evidence, gates,
-   exit criteria, and compatible artifact locations.
+7. Derive a cross-phase artifact contract: file granularity, names, required
+   sections, link/command conventions, and evidence-record format.
+8. Emit a coherent learning phase with outcomes, ordered work, evidence, gates,
+   exit criteria, compatible artifact locations, and a conformance report.
 
 The response may define its own knowledge-type and depth vocabulary, but it must use both consistently. P0 is the highest global importance. T0-T5 are task-layer labels, not a six-step checklist: selecting all six requires justification.
 
@@ -99,6 +101,50 @@ contract without stating an explicit migration reason.
 - It includes a structural verification gate for links, paths, and runnable Lab
   entry points in addition to knowledge-completion gates.
 
+## Scenario 5: Cross-phase artifact contract
+
+### Prompt
+
+An engineering-learning repository has two completed-looking phases, but their
+formats drifted:
+
+```text
+Week 0
+  weeks/week-00/README.md       long narrative and task preview
+  resources/week-00.md          one combined resource file
+  homework/week-00-*.md         separate assignments
+  notes/week-00-template.md     separate evidence template
+  labs/week-00/README.md        purpose, gates, constraints, run, post-Lab
+
+Week 1
+  weeks/week-01/README.md       capability map and completion rule
+  resources/week-01/*.md        split pre-class, material, exercises, homework, notes
+  tasks/week-01.md              Gate 0–6 chain
+  labs/week-01/README.md        gates, run, hints only
+```
+
+The learner requires every future phase to feel like one course: matching
+artifact names and granularity, stable required README and Lab README sections,
+consistent link/command conventions, and comparable evidence records. Week 0
+may be a legacy layout; do not assume it is canonical merely because it came
+first. Design the next phase and the corrective work needed before it starts.
+
+### Expected invariants
+
+- The response compares prior phases using an explicit compatibility matrix that
+  covers paths, file granularity, names, required sections, links/commands, and
+  evidence format.
+- It classifies each observed predecessor pattern as canonical, legacy,
+  incomplete, or an explicitly justified variation; it does not blindly copy
+  either Week 0 or Week 1.
+- It defines one canonical phase artifact contract and an ordered migration or
+  exception plan before creating the next phase.
+- It keeps the knowledge graph and cross-phase format contract separate: a
+  content difference may be justified, but an unexplained artifact difference
+  is a blocker.
+- Its verification checks both existence/links and conformance to required
+  headings, names, granularity, commands, and evidence-record fields.
+
 ## Compact evaluation rubric
 
 Score each item 0 or 1 against a scenario response:
@@ -112,6 +158,7 @@ Score each item 0 or 1 against a scenario response:
 | 5 | Intensity | Evidence intensity is unequal and justified by importance, dependency, gap, or risk. |
 | 6 | Phase output | Outcomes, ordered work, evidence, gates, and exit criteria form one coherent phase. |
 | 7 | Structure compatibility | Existing repository roles are mapped to explicit artifact paths, with a structural verification gate. |
-| 8 | Scenario fidelity | All scenario-specific invariants are satisfied without replacing gates with a fixed-day schedule. |
+| 8 | Cross-phase conformance | A canonical artifact contract and predecessor compatibility report control names, granularity, sections, commands, and evidence format. |
+| 9 | Scenario fidelity | All scenario-specific invariants are satisfied without replacing gates with a fixed-day schedule. |
 
-Passing requires 8/8. Criteria 1-7 are hard invariants: a polished task ladder cannot compensate for omitting any pre-task decision.
+Passing requires 9/9. Criteria 1-8 are hard invariants: a polished task ladder cannot compensate for omitting any pre-task decision.
