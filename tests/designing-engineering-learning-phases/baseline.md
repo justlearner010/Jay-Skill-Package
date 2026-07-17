@@ -23,3 +23,12 @@ Linux made a strong gate ladder but treated gates uniformly and omitted global i
 | Linux process and signal diagnosis | Produced a strong gate ladder. | Treated gates uniformly instead of calibrating intensity and omitted explicit P0-P3 global-importance ranking. |
 
 The baseline remains RED if any hard invariant in the compact rubric is missing, even when its ladder or gates are otherwise strong. Future Skill-assisted runs should be compared against the same prompts and scored 7/7 without weakening the invariants.
+
+## Structural compatibility baseline
+
+With the original Skill loaded, the Week 0/Week 1 layout scenario produced a
+knowledge-gated phase but no explicit artifact-role-to-path map and no
+structural validation gate. Its only layout instruction was to reuse repository
+organization, so it could not resolve the conflicting `lab/`, `labs/`, and
+`weeks/` locations. This is a RED result for Scenario 4 and criterion 7 of the
+expanded rubric.

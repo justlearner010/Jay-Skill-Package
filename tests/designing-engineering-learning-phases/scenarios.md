@@ -11,7 +11,10 @@ Every response must make these decisions explicitly and in this order:
 3. Rank global importance with P0-P3, including at least one explicit lower-priority or deferred node.
 4. Select task layers with T0-T5 and explain why each selected layer is necessary.
 5. Calibrate evidence intensity unequally from importance, dependency role, learner gap, and failure risk.
-6. Emit a coherent learning phase with outcomes, ordered work, evidence, gates, and exit criteria.
+6. Derive a structural compatibility map from the target repository's established
+   layout before assigning artifact paths.
+7. Emit a coherent learning phase with outcomes, ordered work, evidence, gates,
+   exit criteria, and compatible artifact locations.
 
 The response may define its own knowledge-type and depth vocabulary, but it must use both consistently. P0 is the highest global importance. T0-T5 are task-layer labels, not a six-step checklist: selecting all six requires justification.
 
@@ -63,6 +66,39 @@ Before proposing diagnostic gates, classify the knowledge types and current/targ
 - Each diagnosis gate requires a hypothesis, selected evidence, interpretation, and safe next action rather than command execution alone.
 - Intensity varies by consequence and learner gap; evidence for safe signaling and causal diagnosis is stronger than evidence for memorizing flags.
 
+## Scenario 4: Curriculum structure compatibility
+
+### Prompt
+
+An engineering-learning repository has already established this Week 0 pattern:
+
+```text
+weeks/week-00/README.md       navigation only
+resources/week-00.md          learning material
+tasks/week-00.md              knowledge-gated task chain
+labs/week-00/                 runnable Lab, tests, and grader entry point
+```
+
+Week 1 currently has a root-level `lab/` and multiple content files inside
+`weeks/week-01/`. The learner requires future stages to keep only `README.md`
+inside `weeks/week-XX/`, place executable work in `labs/week-XX/`, learning
+materials in `resources/week-XX/`, and task chains in `tasks/week-XX.md`.
+
+Design the Week 1 phase and its artifacts. Preserve the established layout,
+repair incompatible paths, and do not let a knowledge map override a repository
+contract without stating an explicit migration reason.
+
+### Expected invariants
+
+- The response explicitly identifies the existing structure as evidence, rather
+  than treating folders as arbitrary output locations.
+- It maps each artifact role to one compatible destination: navigation,
+  resources, task chain, or runnable Lab.
+- `weeks/week-01/` contains only `README.md`; executable files are not placed
+  in `resources/`, and learning materials are not placed in `labs/`.
+- It includes a structural verification gate for links, paths, and runnable Lab
+  entry points in addition to knowledge-completion gates.
+
 ## Compact evaluation rubric
 
 Score each item 0 or 1 against a scenario response:
@@ -75,6 +111,7 @@ Score each item 0 or 1 against a scenario response:
 | 4 | Task layers | T0-T5 choices are explicit, selective or justified, and linked to node needs. |
 | 5 | Intensity | Evidence intensity is unequal and justified by importance, dependency, gap, or risk. |
 | 6 | Phase output | Outcomes, ordered work, evidence, gates, and exit criteria form one coherent phase. |
-| 7 | Scenario fidelity | All scenario-specific invariants are satisfied without replacing gates with a fixed-day schedule. |
+| 7 | Structure compatibility | Existing repository roles are mapped to explicit artifact paths, with a structural verification gate. |
+| 8 | Scenario fidelity | All scenario-specific invariants are satisfied without replacing gates with a fixed-day schedule. |
 
-Passing requires 7/7. Criteria 1-6 are hard invariants: a polished task ladder cannot compensate for omitting any pre-task decision.
+Passing requires 8/8. Criteria 1-7 are hard invariants: a polished task ladder cannot compensate for omitting any pre-task decision.

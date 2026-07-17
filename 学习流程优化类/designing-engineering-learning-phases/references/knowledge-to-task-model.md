@@ -68,6 +68,32 @@ reading or more tasks.
 6. Require every later integration gate to consume earlier verified contracts
    or evidence rather than silently reimplementing them.
 
+## Structural compatibility model
+
+Before selecting paths, inspect at least one completed predecessor stage and
+the target repository's top-level documentation. Treat repeated layout as a
+contract, not decoration.
+
+Resolve path authority in this order: explicit user structure constraint,
+written repository contract, recent compatible predecessor, then legacy
+layout. A legacy pattern may explain migration work but must not override an
+explicit target layout.
+
+| Artifact role | Responsibility | Path decision |
+| --- | --- | --- |
+| navigation | capability question, dependency map, completion criteria, links | `weeks/week-XX/README.md` when the repository uses week navigation |
+| resource | reading prompts, guided exercises, post-Lab reflection, templates | the repository's existing `resources/` convention |
+| task chain | ordered gates and evidence required to unlock later work | the repository's existing `tasks/` convention |
+| runnable Lab | starter code, public tests, grader entry point, executable contract | the repository's existing `labs/week-XX/` convention |
+| evidence record | learner-owned answers, logs, or notes | the repository's established notes or answers location |
+
+Record a structural map with `artifact role`, `canonical path`, `predecessor
+pattern`, and `migration impact`. A move is incomplete until references,
+test-discovery configuration, and runnable commands target the canonical path.
+If a new role is genuinely necessary, document why the old roles cannot own it;
+do not create a second spelling of an established directory merely for a single
+phase.
+
 ## Required phase output
 
 ```text
@@ -76,8 +102,9 @@ current evidence and caveats
 knowledge map: type, depth, dependency, importance, task layer, rationale
 dependency graph
 scope and non-goals
+structural compatibility map: role, path, predecessor pattern, migration impact
 knowledge-gated tasks
-verification matched to knowledge type
+verification matched to knowledge type, plus links, paths, and entry points
 completion gates and unresolved P0 rule
 next unlocked capability
 ```

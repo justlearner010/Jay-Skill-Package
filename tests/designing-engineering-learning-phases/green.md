@@ -9,7 +9,8 @@ The three scenarios in `scenarios.md` were rerun with
 | Python CLI boundaries | Pass | Distinguished domain, adapter, testing, and diagnostic nodes; calibrated P0 boundary and testability work above familiar syntax. |
 | Linux process diagnosis | Pass | Ranked signal semantics, reaping, and diagnosis integration as P0; kept tool lookup and advanced topics lighter; used gate-based progression. |
 
-All three met the seven rubric criteria in `scenarios.md`:
+The three original scenarios met the seven original rubric criteria in
+`scenarios.md`:
 
 1. classification and current/target depth;
 2. hard and soft dependency mapping;
@@ -19,5 +20,16 @@ All three met the seven rubric criteria in `scenarios.md`:
 6. coherent phase output;
 7. scenario fidelity without a calendar skeleton.
 
-No Skill refactor was required by these runs. Future changes should rerun the
-same three prompts and preserve a 7/7 result.
+## Structural compatibility validation
+
+Scenario 4 was rerun after adding the structural-compatibility model. The
+scenario explicitly required `resources/week-01/` even though Week 0 retained
+the legacy `resources/week-00.md` layout.
+
+| Scenario | Result | Evidence |
+| --- | --- | --- |
+| Curriculum structure compatibility | Pass | Used `resources/week-01/` because an explicit target structure overrides a legacy predecessor; limited `weeks/week-01/` to README navigation; placed runnable work in `labs/week-01/`; required links, paths, test discovery, and grader entry points to be checked. |
+
+The expanded rubric now passes 8/8: the original seven criteria plus structural
+compatibility. Future changes must preserve the original scenario behavior and
+the explicit-constraint-over-legacy rule.
