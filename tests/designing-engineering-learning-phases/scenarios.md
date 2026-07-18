@@ -1,0 +1,164 @@
+# Reusable Evaluation Scenarios
+
+These scenarios evaluate whether a learning-phase designer reasons about the knowledge map before producing tasks. They are reusable: the evaluator may change the learner profile or time budget, but must preserve the required decisions and invariants.
+
+## Required decision order
+
+Every response must make these decisions explicitly and in this order:
+
+1. Classify each material knowledge node and state its current and target depth.
+2. Map hard dependencies separately from soft dependencies.
+3. Rank global importance with P0-P3, including at least one explicit lower-priority or deferred node.
+4. Select task layers with T0-T5 and explain why each selected layer is necessary.
+5. Calibrate evidence intensity unequally from importance, dependency role, learner gap, and failure risk.
+6. Derive a structural compatibility map from the target repository's established
+   layout before assigning artifact paths.
+7. Derive a cross-phase artifact contract: file granularity, names, required
+   sections, link/command conventions, and evidence-record format.
+8. Emit a coherent learning phase with outcomes, ordered work, evidence, gates,
+   exit criteria, compatible artifact locations, and a conformance report.
+
+The response may define its own knowledge-type and depth vocabulary, but it must use both consistently. P0 is the highest global importance. T0-T5 are task-layer labels, not a six-step checklist: selecting all six requires justification.
+
+## Scenario 1: Transformer mechanism learning
+
+### Prompt
+
+Design a flexible learning phase for a learner who can use PyTorch tensor operations and call a Transformer layer, but cannot yet explain or debug the mechanism. The target is to explain scaled dot-product attention, implement a minimal single-head attention path, extend it to multi-head attention, and diagnose shape and mask failures. Include Q/K/V projections, similarity scores and scaling, softmax, masking, head splitting/concatenation, output projection, residual connections, layer normalization, positional information, and feed-forward layers in the knowledge map. Do not turn the phase into a Day 1-Day 7 schedule; pacing must advance by evidence and gates.
+
+Before proposing exercises, classify the knowledge types and current/target depths, distinguish hard and soft dependencies, rank every material node P0-P3, choose justified T0-T5 task layers, calibrate unequal evidence intensity, and then emit the phase.
+
+### Expected invariants
+
+- Tensor shapes, Q/K/V flow, score scaling, softmax, and mask semantics are treated as mechanism-critical dependencies before multi-head implementation and diagnosis.
+- The map distinguishes the attention mechanism from surrounding Transformer-block concepts; not every named node receives equal priority or depth.
+- At least one task requires an observable implementation artifact, and at least one task requires diagnosis from a malformed shape or mask.
+- Progression is gate-based and flexibly paced. Calendar-day labels are absent.
+- The final phase traces each high-intensity task and gate back to a classified node, depth gap, dependency, and P0-P3 decision.
+
+## Scenario 2: Python CLI application boundaries
+
+### Prompt
+
+Design a learning phase for a learner who can write small Python scripts with `argparse`, but tends to place parsing, business rules, file I/O, formatting, and process termination in one function. The target is a testable command-line application with clear boundaries among argument parsing, orchestration, domain logic, adapters for external I/O, presentation, and the executable entry point. Include validation, exit-code ownership, exception translation, dependency injection at the composition root, unit tests, and one subprocess-level acceptance test.
+
+Before proposing the task ladder, classify the knowledge types and current/target depths, distinguish hard and soft dependencies, rank every material node P0-P3, choose justified T0-T5 task layers, calibrate unequal evidence intensity, and then emit the phase. Explicitly justify why boundary-defining and integration work should or should not receive more evidence than familiar syntax.
+
+### Expected invariants
+
+- The response separates declarative knowledge about boundaries from procedural refactoring skill and diagnostic judgment about leakage or ownership.
+- Pure domain logic and explicit side-effect boundaries precede subprocess integration; useful testing or packaging conveniences may be soft dependencies rather than universal gates.
+- Global importance differentiates architectural boundaries and exit/error ownership from already-familiar `argparse` syntax.
+- The phase contains a thin vertical slice, focused boundary tests, and an end-to-end CLI check with observable exit code and output.
+- Unequal intensity is justified per node or cluster; a strong task ladder alone does not satisfy the scenario.
+
+## Scenario 3: Linux process and signal diagnosis
+
+### Prompt
+
+Design a learning phase for a learner who knows basic shell commands but cannot reliably diagnose a process that ignores termination, becomes a zombie, or leaves a pipeline hanging. The target is to explain process identity and parent/child relationships, distinguish process state from process control, inspect signal dispositions and masks, choose safe signals, interpret permissions, use `ps`, `/proc`, `kill`, `wait`, `strace`, and shell job-control evidence, and diagnose three failures: ignored `SIGTERM`, an unreaped child, and a process blocked around a pipe.
+
+Before proposing diagnostic gates, classify the knowledge types and current/target depths, distinguish hard and soft dependencies, rank every material node P0-P3, choose justified T0-T5 task layers, calibrate unequal evidence intensity, and then emit the phase. Do not make every command or gate equally deep merely because it appears in the workflow.
+
+### Expected invariants
+
+- Process identity, parent/child relationships, process states, signal semantics, and wait/reaping form explicit hard dependencies for the relevant diagnoses.
+- Tool syntax and optional deep tracing are separated from the conceptual model; `strace` is not automatically a prerequisite for every case.
+- P0-P3 ranking is global across the phase and distinguishes safety-critical signal reasoning from lookup-level command details.
+- Each diagnosis gate requires a hypothesis, selected evidence, interpretation, and safe next action rather than command execution alone.
+- Intensity varies by consequence and learner gap; evidence for safe signaling and causal diagnosis is stronger than evidence for memorizing flags.
+
+## Scenario 4: Curriculum structure compatibility
+
+### Prompt
+
+An engineering-learning repository has already established this Week 0 pattern:
+
+```text
+weeks/week-00/README.md       navigation only
+resources/week-00.md          learning material
+tasks/week-00.md              knowledge-gated task chain
+labs/week-00/                 runnable Lab, tests, and grader entry point
+```
+
+Week 1 currently has a root-level `lab/` and multiple content files inside
+`weeks/week-01/`. The learner requires future stages to keep only `README.md`
+inside `weeks/week-XX/`, place executable work in `labs/week-XX/`, learning
+materials in `resources/week-XX/`, and task chains in `tasks/week-XX.md`.
+
+Design the Week 1 phase and its artifacts. Preserve the established layout,
+repair incompatible paths, and do not let a knowledge map override a repository
+contract without stating an explicit migration reason.
+
+### Expected invariants
+
+- The response explicitly identifies the existing structure as evidence, rather
+  than treating folders as arbitrary output locations.
+- It maps each artifact role to one compatible destination: navigation,
+  resources, task chain, or runnable Lab.
+- `weeks/week-01/` contains only `README.md`; executable files are not placed
+  in `resources/`, and learning materials are not placed in `labs/`.
+- It includes a structural verification gate for links, paths, and runnable Lab
+  entry points in addition to knowledge-completion gates.
+
+## Scenario 5: Cross-phase artifact contract
+
+### Prompt
+
+An engineering-learning repository has two completed-looking phases, but their
+formats drifted:
+
+```text
+Week 0
+  weeks/week-00/README.md       long narrative and task preview
+  resources/week-00.md          one combined resource file
+  homework/week-00-*.md         separate assignments
+  notes/week-00-template.md     separate evidence template
+  labs/week-00/README.md        purpose, gates, constraints, run, post-Lab
+
+Week 1
+  weeks/week-01/README.md       capability map and completion rule
+  resources/week-01/*.md        split pre-class, material, exercises, homework, notes
+  tasks/week-01.md              Gate 0–6 chain
+  labs/week-01/README.md        gates, run, hints only
+```
+
+The learner requires every future phase to feel like one course: matching
+artifact names and granularity, stable required README and Lab README sections,
+consistent link/command conventions, and comparable evidence records. Week 0
+may be a legacy layout; do not assume it is canonical merely because it came
+first. Design the next phase and the corrective work needed before it starts.
+
+### Expected invariants
+
+- The response compares prior phases using an explicit compatibility matrix that
+  covers paths, file granularity, names, required sections, links/commands, and
+  evidence format.
+- It classifies each observed predecessor pattern as canonical, legacy,
+  incomplete, or an explicitly justified variation; it does not blindly copy
+  either Week 0 or Week 1.
+- It defines one canonical phase artifact contract and an ordered migration or
+  exception plan before creating the next phase.
+- It keeps the knowledge graph and cross-phase format contract separate: a
+  content difference may be justified, but an unexplained artifact difference
+  is a blocker.
+- Its verification checks both existence/links and conformance to required
+  headings, names, granularity, commands, and evidence-record fields.
+
+## Compact evaluation rubric
+
+Score each item 0 or 1 against a scenario response:
+
+| # | Criterion | Pass condition |
+| --- | --- | --- |
+| 1 | Classification and depth | Material nodes have consistent knowledge types plus explicit current and target depths. |
+| 2 | Dependencies | Hard and soft edges are separate, directional, and materially affect ordering. |
+| 3 | Global importance | Material nodes are ranked P0-P3 globally, with meaningful differentiation. |
+| 4 | Task layers | T0-T5 choices are explicit, selective or justified, and linked to node needs. |
+| 5 | Intensity | Evidence intensity is unequal and justified by importance, dependency, gap, or risk. |
+| 6 | Phase output | Outcomes, ordered work, evidence, gates, and exit criteria form one coherent phase. |
+| 7 | Structure compatibility | Existing repository roles are mapped to explicit artifact paths, with a structural verification gate. |
+| 8 | Cross-phase conformance | A canonical artifact contract and predecessor compatibility report control names, granularity, sections, commands, and evidence format. |
+| 9 | Scenario fidelity | All scenario-specific invariants are satisfied without replacing gates with a fixed-day schedule. |
+
+Passing requires 9/9. Criteria 1-8 are hard invariants: a polished task ladder cannot compensate for omitting any pre-task decision.

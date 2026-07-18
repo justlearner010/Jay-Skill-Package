@@ -1,0 +1,4 @@
+interface:
+  display_name: "Engineering Learning Phase Designer"
+  short_description: "Design mastery-based engineering learning phases"
+  default_prompt: "Use $designing-engineering-learning-phases to turn this engineering topic into a dependency-aware learning phase."
